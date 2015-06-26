@@ -10,7 +10,6 @@
 # Methods and Functions (KEYWORD2)
 #######################################
 
-begin KEYWORD2
 init_config	KEYWORD2
 connect KEYWORD2
 loop KEYWORD2

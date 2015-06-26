@@ -35,7 +35,17 @@
 #define INFO_PRINTLN(...) { }
 #endif
 
-
+// TYPES
+// typedef enum {
+//     WL_NO_SHIELD        = 255,   // for compatibility with WiFi Shield library
+//     WL_IDLE_STATUS      = 0,
+//     WL_NO_SSID_AVAIL    = 1,
+//     WL_SCAN_COMPLETED   = 2,
+//     WL_CONNECTED        = 3,
+//     WL_CONNECT_FAILED   = 4,
+//     WL_CONNECTION_LOST  = 5,
+//     WL_DISCONNECTED     = 6
+// } wl_status_t;
 
 
 class WiFiHelper
@@ -49,10 +59,16 @@ public:
     void init_config(const char*, const char*);
 
 
+    void connect()
+    {
+        _connect();
+    }
+
     void begin()
     {
         _connect();
     }
+
 
     void loop()
     {
@@ -65,7 +81,7 @@ public:
             INFO_PRINTLN("CLASS: WIFI CONNECTED...");
             if (_user_on_disconnected != NULL)
             {
-                _user_on_disconnected("class: disconnected");
+                _user_on_disconnected("wifi: disconnected");
             }
             _connect();
         }
@@ -110,7 +126,7 @@ private:
         {
             if (_user_on_connecting != NULL)
             {
-                _user_on_connecting("class: connecting");
+                _user_on_connecting("wifi: connecting");
             }
 
             DEBUG_PRINT(WiFi.status());
