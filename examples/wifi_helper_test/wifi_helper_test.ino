@@ -3,7 +3,7 @@
 #include <ESP8266WiFi.h>
 #include <WiFiHelper.h>
 
-const char* ssid     = "CMMC.47";
+const char* ssid     = "NAT.11";
 const char* pass     = "guestnetwork";
 
 WiFiHelper *wifi;
@@ -12,21 +12,22 @@ void init_wifi()
 {
     wifi = new WiFiHelper(ssid, pass);
 
-    wifi->on_connecting([](const char* message)
+    wifi->on_connecting([](const void* status)
     {
-        Serial.println (message);
+        Serial.print("CONNECTING... CODE: ");
+        Serial.println((char*)status);;
     });
 
-    wifi->on_connected([](const char* message)
+    wifi->on_connected([](const void* message)
     {
-        Serial.println (message);
+        Serial.println ((char*)message);
         Serial.println("IP address: ");
         Serial.println(WiFi.localIP());        
     });
 
-    wifi->on_disconnected([](const char* message)
+    wifi->on_disconnected([](const void* message)
     {
-        Serial.println (message);
+        Serial.println ((char*)message);
     });
     
     wifi->begin();
