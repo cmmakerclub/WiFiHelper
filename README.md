@@ -1,2 +1,4 @@
-# WiFiHelper
-an esp8266 wifi helper.
+# Deprecated
+
+
+moved to [WiFi Connector](http://github.com/cmmakerclub/WiFiConnector)
